@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiConsumer", "ApiConsumer\ApiConsumer.csproj", "{3347BED6-43D1-4882-8482-9733504827B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppConsumer", "ApiConsumer\AppConsumer.csproj", "{3347BED6-43D1-4882-8482-9733504827B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

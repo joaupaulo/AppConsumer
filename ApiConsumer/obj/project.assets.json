@@ -734,9 +734,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\source\\repos\\ApiConsumer\\ApiConsumer\\ApiConsumer.csproj",
-      "projectName": "ApiConsumer",
-      "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\source\\repos\\ApiConsumer\\ApiConsumer\\ApiConsumer.csproj",
+      "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\source\\repos\\ApiConsumer\\ApiConsumer\\AppConsumer.csproj",
+      "projectName": "AppConsumer",
+      "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\source\\repos\\ApiConsumer\\ApiConsumer\\AppConsumer.csproj",
       "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\source\\repos\\ApiConsumer\\ApiConsumer\\obj\\",
       "projectStyle": "PackageReference",

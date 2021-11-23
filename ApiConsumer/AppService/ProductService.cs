@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiConsumer.DatabaseSettings;
-using ApiConsumer.Entidades;
+using AppConsumer.DatabaseSettings;
+using AppConsumer.Model;
 using MongoDB.Driver;
 
-namespace ApiConsumer.ApiServices
+namespace AppConsumer.AppServices
 {
-    public class ProdutosService : IProdutosService
+    public class ProductService : IProductService
     {
-        private readonly IMongoCollection<Produtos> _context;
+        private readonly IMongoCollection<Product> _context;
 
-        public ProdutosService(IApiConsumerDatabase settings)
+        public ProductService(IAppConsumerDatabase settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _context = database.GetCollection<Produtos>(settings.ProdutosCollectionName);
+            _context = database.GetCollection<Product>(settings.ProductCollectionName);
         }
 
 
 
-        public async Task CriarProduto(Produtos product)
+        public async Task CreateProduct(Product product)
         {
 
            
@@ -32,7 +32,7 @@ namespace ApiConsumer.ApiServices
 
      
 
-        public async Task<bool> VenderProduto(Produtos product)
+        public async Task<bool> SellProduct(Product product)
         {
 
             

@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ApiConsumer.ApiServices;
+
 using ApiConsumer.DatabaseSettings;
 using ApiConsumer.Entidades;
+using AppConsumer.AppServices;
 using MongoDB.Driver;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 namespace ApiConsumer.RabbitService
 {
-    public class MensageService : IMessageService
+    public class MessageService : IMessageService
     {
 
-        private readonly IMongoCollection<Produtos> _context;
-        private readonly IProdutosService _produtosService;
-        public MensageService(IApiConsumerDatabase settings, IProdutosService produtosService)
+        private readonly IMongoCollection<Product> _context;
+        private readonly IProductService _productService;
+        public MessageService(IAppConsumerDatabase settings, IProductService productService)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _context = database.GetCollection<Produtos>(settings.ProdutosCollectionName);
-            _produtosService = produtosService;
+            _context = database.GetCollection<Product>(settings.ProductCollectionName);
+            _productService = productService;
         }
 
 
@@ -47,17 +48,17 @@ namespace ApiConsumer.RabbitService
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
-                    var pedido = System.Text.Json.JsonSerializer.Deserialize<Produtos>(message);
+                    var request = System.Text.Json.JsonSerializer.Deserialize<Product>(message);
 
 
 
-                    long verificacao = _context.CountDocuments(x => x.Id == pedido.Id);
+                    long check = _context.CountDocuments(x => x.Id == request.Id);
 
-                    if (verificacao > 0)
+                    if (check > 0)
                     {
 
-
-                        _produtosService.VenderProduto(pedido);
+                        request.Amount = request.Amount - request.QuantityProducts;
+                        _productService.SellProduct(request);
 
 
 
@@ -67,8 +68,7 @@ namespace ApiConsumer.RabbitService
                     {
 
 
-                        pedido.Amount = pedido.Amount - pedido.QuantVendidos;
-                        _produtosService.CriarProduto(pedido);
+                        _productService.CreateProduct(request);
                     }
 
 
@@ -79,8 +79,7 @@ namespace ApiConsumer.RabbitService
                                      autoAck: true,
                                      consumer: consumer);
 
-                Console.WriteLine(" Press [enter] to exit.");
-                Console.ReadLine();
+              
             }
 
 

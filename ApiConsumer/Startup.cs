@@ -31,14 +31,14 @@ namespace ApiConsumer
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.Configure<ApiConsumerDatabase>(
-   Configuration.GetSection(nameof(ApiConsumerDatabase)));
+            services.Configure<AppConsumerDatabase>(
+   Configuration.GetSection(nameof(AppConsumerDatabase)));
 
-            services.AddSingleton<IApiConsumerDatabase>(sp =>
-                sp.GetRequiredService<IOptions<ApiConsumerDatabase>>().Value);
+            services.AddSingleton<IAppConsumerDatabase>(sp =>
+                sp.GetRequiredService<IOptions<AppConsumerDatabase>>().Value);
 
-            services.AddScoped<IProdutosService,ProdutosService>();
-            services.AddScoped<IMessageService,MensageService>();
+            services.AddScoped<IProductService,ProductService>();
+            services.AddScoped<IMessageService,MesageService>();
 
 
 
