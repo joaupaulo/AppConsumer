@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ApiConsumer.DatabaseSettings
 {
-    public interface IApiConsumerDatabase
+    public interface IAppConsumerDatabase
     {
         string ProdutosCollectionName { get; set; }
         string ConnectionString { get; set; }

@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApiConsumer.Entidades
 {
-    public class Produtos
+    public class Product
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -18,6 +18,6 @@ namespace ApiConsumer.Entidades
         public string Descrption { get; set; }
         public int Price { get; set; }
         public int Amount { get; set; }
-        public int QuantVendidos { get; set; }
+        public int QuantityProducts { get; set; }
     }
 }
